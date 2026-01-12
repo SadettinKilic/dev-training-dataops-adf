@@ -1,0 +1,9 @@
+{
+	"name": "dev-training-dataops-adf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ccb5fc94-10d3-4c1a-9155-5eb40c452f01",
+		"tenantId": "3d355765-67d9-47cd-9c7a-bf31179f56eb"
+	}
+}
