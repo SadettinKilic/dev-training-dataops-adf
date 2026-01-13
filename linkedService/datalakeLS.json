@@ -1,0 +1,12 @@
+{
+	"name": "datalakeLS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://sttrainingdataops.dfs.core.windows.net/",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEI5N0U0N0IwLTBGNDYtNEMxNS1CQzcwLTc1RTdBRTE0MTJDNl8xMjEzYzgzYS04NTg0LTQ3MGUtYmE2Zi0wNzY4ZmMxNDBjNGQiDQp9"
+		}
+	}
+}
