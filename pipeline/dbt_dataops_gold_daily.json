@@ -1,0 +1,67 @@
+{
+	"name": "dbt_dataops_gold_daily",
+	"properties": {
+		"activities": [
+			{
+				"name": "run_dbt",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "get_token_from_KV",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Authorization": {
+							"value": "@concat('Bearer ', activity('get_token_from_KV').output.value)",
+							"type": "Expression"
+						}
+					},
+					"url": "https://adb-7405615851615302.2.azuredatabricks.net/api/2.1/jobs/run-now",
+					"body": "@concat('{\"job_id\": ', pipeline().parameters.p_job_id, '}')"
+				}
+			},
+			{
+				"name": "get_token_from_KV",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": "https://kv-training-dataops.vault.azure.net/secrets/dbx-token?api-version=7.0",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://vault.azure.net"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"p_job_id": {
+				"type": "string",
+				"defaultValue": "469260498224433"
+			}
+		},
+		"annotations": []
+	}
+}
