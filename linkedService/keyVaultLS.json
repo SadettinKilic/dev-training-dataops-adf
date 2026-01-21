@@ -1,0 +1,10 @@
+{
+	"name": "keyVaultLS",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://kv-training-dataops.vault.azure.net/"
+		}
+	}
+}
