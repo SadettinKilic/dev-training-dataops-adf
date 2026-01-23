@@ -1,9 +1,9 @@
 <p align="left">
   <strong>Language:</strong>
-  <img src="https://img.shields.io/badge/T%C3%BCrk%C3%A7e-red">
-  <a href="./README_EN.md">
-    <img src="https://img.shields.io/badge/English-lightgrey">
+  <a href="./README.md">
+    <img src="https://img.shields.io/badge/T%C3%BCrk%C3%A7e-lightgrey">
   </a>
+  <img src="https://img.shields.io/badge/English-red">
 </p>
 <p align="left">
   <!-- Core Tech -->
