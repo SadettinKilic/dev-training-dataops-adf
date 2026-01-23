@@ -1,3 +1,25 @@
+<p align="left">
+  <strong>Language:</strong>
+  <img src="https://img.shields.io/badge/T%C3%BCrk%C3%A7e-red">
+  <a href="./README_EN.md">
+    <img src="https://img.shields.io/badge/English-lightgrey">
+  </a>
+</p>
+<p align="left">
+  <!-- Core Tech -->
+  <img src="https://img.shields.io/badge/Azure-Data%20Factory-blue">
+  <img src="https://img.shields.io/badge/Azure-Databricks-tomato">
+  <img src="https://img.shields.io/badge/Microsoft%20Azure-Cloud-blue">
+
+  <!-- Architecture -->
+  <img src="https://img.shields.io/badge/Architecture-Medallion-success">
+
+  <!-- REAL CI BADGE -->
+  <img src="https://img.shields.io/badge/CI%2FCD-Handled%20in%20dbt%20Repo-lightgrey">
+  <!-- DataOps -->
+  <img src="https://img.shields.io/badge/DataOps-Automated-informational">
+</p>
+
 * * *
 
 # 🏅 Paris 2024 Olympics DataOps & Analytics Project
@@ -19,8 +41,8 @@ Proje, DataOps prensipleri gereği transformasyon kodları ve orkestrasyon yapı
 
 | **Repository** | **İçerik** | **Link** |
 | --- | --- | --- |
-| **dbt Repository** | dbt Modelleri, SQL logic, CI/CD (SQLFluff, Freshness) | <a href="https://github.com/SadettinKilic/dev-training-dataops" target="_blank">🔗 dev-training-dataops</a>
-| **ADF Repository** | Azure Data Factory Pipeline'ları, JSON tanımları, Linked Services, Triggers | <a href="https://github.com/SadettinKilic/dev-training-dataops-adf" target="_blank">🔗 dev-training-dataops-adf</a> |
+| **dbt Repository** | dbt Modelleri, SQL logic, CI/CD (SQLFluff, Freshness) | [🔗 dev-training-dataops](https://github.com/SadettinKilic/dev-training-dataops) |
+| **ADF Repository** | Azure Data Factory Pipeline'ları, JSON tanımları, Linked Services, Triggers | [🔗 dev-training-dataops-adf](https://github.com/SadettinKilic/dev-training-dataops-adf) |
 * * *
 ## 📂 Azure Kaynak Yapısı (Resource Group: `rg-training-dataops`)
 
@@ -164,7 +186,7 @@ Projeyi kendi ortamında çalıştırmak isteyenlerin şu ayarları yapması ger
 
 ## 📈 Veri Seti Hakkında
 
-Projede kullanılan veri seti Kaggle'daki <a href="https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games" target="_blank">Paris 2024 Olympic Summer Games</a> setidir. Sporcular, antrenörler, madalyalar ve etkinlikler hakkında detaylı bilgiler içerir.
+Projede kullanılan veri seti Kaggle'daki [Paris 2024 Olympic Summer Games](https://www.kaggle.com/datasets/piterfm/paris-2024-olympic-summer-games) setidir. Sporcular, antrenörler, madalyalar ve etkinlikler hakkında detaylı bilgiler içerir.
 
 * * *
 
