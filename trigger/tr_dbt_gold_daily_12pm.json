@@ -2,7 +2,7 @@
 	"name": "tr_dbt_gold_daily_12pm",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
