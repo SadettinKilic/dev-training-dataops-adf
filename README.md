@@ -66,6 +66,7 @@ Storage Account üzerinde aşağıdaki container yapısını oluşturun:
 -   `source/raw_data`: Kaggle'dan indirilen ham CSV dosyaları.
 -   `bronze`, `silver`, `gold`: İşlenmiş veri katmanları.
 -   `dbx-managed`: Databricks Managed Catalog için ayrılmış alan.
+-   `monitoring`: monitoring tablolarını içeriyor. Dashboard için kullanılacak.
 
 ### 2\. IAM ve Güvenlik Yapılandırması (Önemli)
 
@@ -77,7 +78,7 @@ Azure üzerinde servislerin birbiriyle konuşabilmesi için şu yetkileri tanım
 
 ### 3\. Databricks Katalog ve Şema Kurulumu
 
-Databricks SQL Editor üzerinden Unity Catalog yapısını kurun:
+Databricks SQL Editor üzerinden Unity Catalog yapısını kurun (Öncesinde external locationları oluşturmanız gerekecektir):
 ```sql
     CREATE CATALOG IF NOT EXISTS dataops MANAGED LOCATION 'abfss://dbx-managed@sttrainingdataops.dfs.core.windows.net/';
     USE CATALOG dataops; 
@@ -85,6 +86,7 @@ Databricks SQL Editor üzerinden Unity Catalog yapısını kurun:
     CREATE SCHEMA IF NOT EXISTS bronze MANAGED LOCATION 'abfss://bronze@sttrainingdataops.dfs.core.windows.net/';
     CREATE SCHEMA IF NOT EXISTS silver MANAGED LOCATION 'abfss://silver@sttrainingdataops.dfs.core.windows.net/';
     CREATE SCHEMA IF NOT EXISTS gold MANAGED LOCATION 'abfss://gold@sttrainingdataops.dfs.core.windows.net/';
+    CREATE SCHEMA IF NOT EXISTS monitoring MANAGED LOCATION 'abfss://monitoring@sttrainingdataops.dfs.core.windows.net/';
 ```
 ### 4. Veri Tanımlama ve Bronze Tablo Yapıları
 
@@ -117,6 +119,13 @@ Bronze katmanındaki tablolar, ham verilerin (CSV/Parquet) şemalarını koruyar
     USING CSV
     OPTIONS (header='true', inferSchema='true')
     LOCATION 'abfss://bronze@sttrainingdataops.dfs.core.windows.net/nocs/';
+
+    CREATE TABLE IF NOT EXISTS dataops.monitoring.audit_logs (
+      model_name STRING,
+      execution_time TIMESTAMP,
+      row_count LONG,
+      status STRING
+    ) USING DELTA;
 ```
 ### 5\. ADF Pipeline Yapılandırması
 ADF üzerinde iki ana süreç yönetilmektedir:
@@ -147,10 +156,23 @@ GitHub üzerindeki workflow dosyamız şu adımları otomatik olarak gerçekleş
       
 **3\. Sürüm Kontrolü ve Entegrasyon**
     
-
 -   **ADF & dbt Sync:** ADF üzerindeki Web Activity, her zaman GitHub'daki "Production" branch'inde bulunan en güncel dbt kodunu tetikler. Böylece geliştirme (dev) ortamında yapılan testler onaylanmadan canlıya geçmez.
-    
 
+### 📊 İzleme ve Gözlemlenebilirlik (DataOps Dashboard)
+### 
+Projenin sağlığı, performansı ve veri kalitesi **Databricks SQL Dashboard** üzerinden anlık olarak takip edilmektedir.
+-   **Pipeline Güvenilirliği:** Günlük başarılı/hatalı model çalışmaları.  
+-   **Model Performansı (Wall of Shame):** En çok kaynak tüketen ve optimizasyon gerektiren modellerin tespiti.
+-   **Veri Akış Hızı (Throughput):** Saniyede işlenen satır sayısı bazında SQL verimlilik analizi.
+-   **Veri Hacmi Drift Analizi:** Kaynak sistemlerden gelen veri miktarındaki ani değişimlerin takibi.
+
+### 📖 Canlı Dökümantasyon ve Veri Soyağacı (Lineage)
+### 
+Projenin teknik detayları ve tablolar arası ilişkiler **dbt Docs** ile otomatik olarak belgelenmektedir.
+-   **[dbt Docs Sayfası](https://sadettinkilic.github.io/dev-training-dataops/)** Sağ alttaki 'Lineage' butonuna tıklayarak akış şemasını inceleyebilirsiniz.
+-   **İnteraktif Soyağacı:** Bronze -> Silver -> Gold katmanları arasındaki veri akışını görsel olarak inceleyebilirsiniz.
+-   **Veri Kataloğu:** Tablo şemaları, sütun açıklamaları ve uygulanan dbt testleri.
+  
 * * *
 
 ## ⚙️ Ekstra Konfigürasyon Notları
