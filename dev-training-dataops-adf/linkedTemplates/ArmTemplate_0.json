@@ -391,7 +391,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -409,7 +409,7 @@
 						"frequency": "Day",
 						"interval": 1,
 						"startTime": "2026-01-21T08:47:00",
-						"endTime": "2026-01-30T08:47:00",
+						"endTime": "2026-02-06T13:47:00",
 						"timeZone": "Turkey Standard Time",
 						"schedule": {
 							"minutes": [
